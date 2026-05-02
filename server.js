@@ -24,7 +24,7 @@ const productCatalog = {
   "Bala Baby": 32,
   "Softcore Vanilla": 32,
   "North Facing": 32,
-  "Rosé": 32
+  "Rose": 32
 };
 
 app.get("/", (req, res) => {
