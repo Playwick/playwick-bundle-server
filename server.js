@@ -15,16 +15,16 @@ const client = new Client({
   environment: Environment.Production,
 });
 
-const PRODUCTS = {
-  "Buysexual": 32,
+const productCatalog = {
+  "Face Card": 32,
   "Lights Off": 32,
-  "Get Er Done": 32,
+  "Uhauling": 32,
   "Canada Eh": 32,
-  "One Dance": 18,
-  "After Hours": 18,
-  "Everyday": 38,
-  "Sexyback": 38,
-  "Wildflower": 38,
+  "Lions Lookout": 32,
+  "Bala Baby": 32,
+  "Softcore Vanilla": 32,
+  "North Facing": 32,
+  "Rosé": 32
 };
 
 app.get("/", (req, res) => {
