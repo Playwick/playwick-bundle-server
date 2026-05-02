@@ -35,10 +35,22 @@ app.post("/create-bundle-checkout", async (req, res) => {
   try {
     const { bundle } = req.body;
 
+    if (!Array.isArray(bundle) || bundle.length === 0) {
+      return res.status(400).json({ error: "No bundle items received." });
+    }
+
     let subtotal = 0;
 
     for (const item of bundle) {
-      subtotal += PRODUCTS[item.name];
+      const price = productCatalog[item.name];
+
+      if (!price) {
+        return res.status(400).json({
+          error: `Unknown product: ${item.name}`
+        });
+      }
+
+      subtotal += price;
     }
 
     let discount = 0;
@@ -64,9 +76,11 @@ app.post("/create-bundle-checkout", async (req, res) => {
     res.json({ url: response.result.paymentLink.url });
 
   } catch (error) {
-    console.error(error);
+    console.error("Checkout error:", error);
     res.status(500).json({ error: "checkout failed" });
   }
 });
 
-app.listen(3000, () => console.log("running"));
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => console.log(`running on port ${PORT}`));
